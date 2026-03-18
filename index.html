@@ -1,722 +1,549 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Green Network - Protect Earth</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        :root {
-            --primary: #2e7d32;
-            --secondary: #4caf50;
-            --accent: #8bc34a;
-            --light: #e8f5e9;
-            --dark: #1b5e20;
-            --text: #333333;
-            --white: #ffffff;
-        }
-
-        body {
-            background-color: var(--light);
-            color: var(--text);
-            line-height: 1.6;
-        }
-
-        header {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-
-        .logo i {
-            font-size: 2rem;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 2rem;
-        }
-
-        nav ul li a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 0;
-            position: relative;
-        }
-
-        nav ul li a:hover {
-            color: var(--accent);
-        }
-
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent);
-            transition: width 0.3s ease;
-        }
-
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: var(--white);
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: var(--white);
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        section {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--accent);
-            border-radius: 2px;
-        }
-
-        .section-title p {
-            color: var(--text);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-img {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .about-img img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .about-img:hover img {
-            transform: scale(1.05);
-        }
-
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 2rem 1rem;
-            background-color: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .stat-item i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .stat-item h3 {
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-item p {
-            color: var(--text);
-        }
-
-        .initiatives {
-            background-color: var(--white);
-        }
-
-        .initiatives-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .initiative-card {
-            background-color: var(--light);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .initiative-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .initiative-img {
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .initiative-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .initiative-card:hover .initiative-img img {
-            transform: scale(1.1);
-        }
-
-        .initiative-content {
-            padding: 1.5rem;
-        }
-
-        .initiative-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .initiative-content p {
-            margin-bottom: 1.5rem;
-        }
-
-        .cta {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            text-align: center;
-            padding: 5rem 0;
-        }
-
-        .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .cta p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta .btn {
-            background-color: var(--white);
-            color: var(--primary);
-        }
-
-        .cta .btn:hover {
-            background-color: var(--accent);
-            color: var(--white);
-        }
-
-        footer {
-            background-color: var(--dark);
-            color: var(--white);
-            padding: 3rem 0 1rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--accent);
-        }
-
-        .footer-column p {
-            margin-bottom: 1rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links li a {
-            color: var(--light);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .footer-links li a:hover {
-            color: var(--accent);
-            padding-left: 5px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: var(--white);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background-color: var(--accent);
-            transform: translateY(-5px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        @media (max-width: 992px) {
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--primary);
-                flex-direction: column;
-                padding: 1rem 0;
-                text-align: center;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-            }
-            
-            nav ul.active {
-                display: flex;
-            }
-            
-            nav ul li {
-                margin: 0;
-                padding: 0.8rem 0;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .stats {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Animation for stats counter */
-        .counter {
-            transition: all 0.5s ease;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Embrace AI · Intelligence Redefined</title>
+  <!-- SEO friendly meta for international audience -->
+  <meta name="description" content="Explore the frontiers of artificial intelligence: its impact, applications, and future. A clear overview for global citizens.">
+  <meta name="keywords" content="AI, artificial intelligence, machine learning, future tech, innovation, AGI, neural networks">
+  <!-- Google Fonts & Font Awesome for clean typography/icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #1e293b;
+      background-color: #ffffff;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Poppins', 'Inter', sans-serif;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* navigation */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 2rem;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.03);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid rgba(0,20,50,0.05);
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      font-weight: 500;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #1e293b;
+      transition: color 0.2s;
+      font-size: 1rem;
+    }
+
+    .nav-links a:hover {
+      color: #2563eb;
+    }
+
+    /* buttons */
+    .btn {
+      display: inline-block;
+      background: #1e293b;
+      color: white;
+      padding: 0.75rem 2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.25s;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: linear-gradient(145deg, #2563eb, #4f46e5);
+      box-shadow: 0 8px 20px rgba(37,99,235,0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 28px rgba(37,99,235,0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid #2563eb;
+      color: #2563eb;
+      margin-left: 1rem;
+    }
+
+    .btn-outline:hover {
+      background: #2563eb;
+      color: white;
+    }
+
+    /* hero */
+    .hero {
+      padding: 5rem 0 6rem;
+      background: radial-gradient(circle at 80% 20%, rgba(37,99,235,0.03) 0%, transparent 50%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 4rem;
+    }
+
+    .hero h1 {
+      font-size: 3.4rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      background: linear-gradient(to right, #0f172a, #2563eb);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #475569;
+      margin-bottom: 2.5rem;
+      max-width: 90%;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .stat-item h3 {
+      font-size: 2rem;
+      color: #0f172a;
+      margin-bottom: 0.2rem;
+    }
+
+    .stat-item p {
+      font-size: 0.9rem;
+      color: #64748b;
+      margin: 0;
+    }
+
+    .hero-illustration {
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" opacity="0.8"><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%232563eb" stop-opacity="0.1"/><stop offset="100%" stop-color="%237c3aed" stop-opacity="0.2"/></linearGradient></defs><circle cx="400" cy="300" r="180" fill="url(%23grad)"/><circle cx="450" cy="250" r="70" fill="%232563eb" opacity="0.1"/><circle cx="300" cy="350" r="100" fill="%234f46e5" opacity="0.08"/><path d="M320 240 L480 280 L440 400 L280 360 Z" fill="%232563eb" opacity="0.05"/></svg>');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      min-height: 400px;
+    }
+
+    /* section spacing */
+    .section {
+      padding: 5rem 0;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 1.2rem;
+      text-align: center;
+      color: #0f172a;
+    }
+
+    .section-subhead {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 3.5rem;
+      color: #64748b;
+      font-size: 1.2rem;
+    }
+
+    /* cards grid */
+    .grid-3, .grid-4 {
+      display: grid;
+      gap: 2rem;
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .grid-4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 2rem 1.8rem;
+      box-shadow: 0 20px 40px -10px rgba(0,20,40,0.08);
+      transition: all 0.25s ease;
+      border: 1px solid rgba(0,0,0,0.02);
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 30px 50px -12px rgba(37,99,235,0.15);
+      border-color: rgba(37,99,235,0.1);
+    }
+
+    .card i {
+      font-size: 2.6rem;
+      background: linear-gradient(145deg, #2563eb, #7c3aed);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1.5rem;
+    }
+
+    .card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .card p {
+      color: #475569;
+      font-size: 0.98rem;
+    }
+
+    /* application icon colors */
+    .app-icon {
+      display: inline-block;
+      background: #eef2ff;
+      padding: 0.8rem;
+      border-radius: 18px;
+      margin-bottom: 1.5rem;
+    }
+
+    /* stats strip */
+    .stats-strip {
+      background: linear-gradient(105deg, #0f172a 0%, #1e293b 100%);
+      color: white;
+      border-radius: 40px;
+      padding: 3.5rem 2rem;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .stat-block h2 {
+      font-size: 3rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #a5f3fc, #bae6fd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .stat-block p {
+      color: #cbd5e1;
+      font-weight: 500;
+    }
+
+    /* timeline */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      max-width: 800px;
+      margin: 2rem auto 0;
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+    }
+
+    .timeline-year {
+      min-width: 120px;
+      font-weight: 800;
+      font-size: 1.8rem;
+      color: #2563eb;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .timeline-content {
+      border-left: 3px solid #e2e8f0;
+      padding-left: 2rem;
+      padding-bottom: 1.5rem;
+    }
+
+    .timeline-content h4 {
+      font-size: 1.4rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .timeline-content p {
+      color: #475569;
+    }
+
+    /* quote block */
+    .quote-block {
+      background: #f8fafc;
+      border-radius: 48px;
+      padding: 3.5rem 3rem;
+      text-align: center;
+      border: 1px solid #e2e8f0;
+      margin: 3rem 0;
+    }
+
+    .quote-text {
+      font-size: 1.8rem;
+      font-weight: 500;
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.4;
+      color: #0f172a;
+      max-width: 900px;
+      margin: 0 auto 2rem;
+    }
+
+    .quote-author {
+      font-weight: 600;
+      color: #2563eb;
+      letter-spacing: 0.5px;
+    }
+
+    /* CTA */
+    .cta-section {
+      background: #0f172a;
+      border-radius: 40px;
+      padding: 4rem 3rem;
+      text-align: center;
+      color: white;
+    }
+
+    .cta-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: white;
+    }
+
+    .cta-section p {
+      color: #94a3b8;
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .cta-buttons .btn {
+      margin: 0 0.5rem;
+    }
+
+    /* footer */
+    .footer {
+      border-top: 1px solid #e2e8f0;
+      padding: 3rem 0;
+      margin-top: 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      color: #64748b;
+    }
+
+    .social a {
+      color: #64748b;
+      margin-left: 1.8rem;
+      font-size: 1.4rem;
+      transition: color 0.2s;
+    }
+    .social a:hover { color: #2563eb; }
+
+    /* responsiveness */
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; text-align: center; }
+      .hero p { max-width: 100%; }
+      .hero-stats { justify-content: center; }
+      .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+      .navbar { padding: 1rem; }
+      .nav-links { display: none; } /* simplify for mobile, but fine */
+    }
+
+    @media (max-width: 600px) {
+      .grid-3, .grid-4 { grid-template-columns: 1fr; }
+      .timeline-item { flex-direction: column; gap: 0.5rem; }
+      .timeline-year { font-size: 1.5rem; }
+      .footer { flex-direction: column; text-align: center; }
+      .social a { margin: 0 0.9rem; }
+      .container { padding: 0 1.5rem; }
+      .hero h1 { font-size: 2.5rem; }
+    }
+  </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container nav-container">
-            <div class="logo">
-                <i class="fas fa-seedling"></i>
-                <span>Green Network</span>
-            </div>
-            <nav>
-                <div class="mobile-menu">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#initiatives">Initiatives</a></li>
-                    <li><a href="#get-involved">Get Involved</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+  <!-- simple sticky navigation -->
+  <nav class="navbar">
+    <span class="logo"><i class="fas fa-brain" style="margin-right: 8px; background: none; -webkit-text-fill-color: currentColor; color: inherit;"></i>intellect<span style="color:#2563eb; -webkit-text-fill-color:#2563eb;">.</span></span>
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Insights</a>
+      <a href="#">Applications</a>
+      <a href="#">Timeline</a>
+      <a href="#">Future</a>
+    </div>
+    <div>
+      <a href="#" class="btn btn-primary" style="padding:0.5rem 1.5rem;">Contact</a>
+    </div>
+  </nav>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <h1>Protect Our Planet, Preserve Our Future</h1>
-            <p>Join the global movement to create a sustainable world through conservation, education, and community action.</p>
-            <a href="#get-involved" class="btn">Join Our Network</a>
+  <main>
+    <!-- Hero section -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <h1>Artificial Intelligence:<br>Redefining human potential</h1>
+          <p>From healthcare to climate, AI amplifies our ability to solve complex problems. Join the wave that’s transforming every corner of our world.</p>
+          <div>
+            <a href="#" class="btn btn-primary">Explore AI <i class="fas fa-arrow-right" style="margin-left: 8px;"></i></a>
+            <a href="#" class="btn btn-outline">Watch overview</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat-item"><h3>$15.7T</h3><p>Projected AI value by 2030</p></div>
+            <div class="stat-item"><h3>86%</h3><p>of firms say AI is mainstream</p></div>
+            <div class="stat-item"><h3>2.3x</h3><p>efficiency boost in early adopters</p></div>
+          </div>
         </div>
+        <div class="hero-illustration"></div>
+      </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>About Green Network</h2>
-                <p>We are a global community dedicated to environmental protection and sustainable development.</p>
-            </div>
-            <div class="about-content">
-                <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Team planting trees">
-                </div>
-                <div class="about-text">
-                    <h3>Our Mission</h3>
-                    <p>Green Network is committed to creating a sustainable future by protecting natural ecosystems, promoting renewable energy, and empowering communities to take environmental action.</p>
-                    <p>Founded in 2010, we've grown from a small grassroots organization to an international network with over 50,000 members across 120 countries.</p>
-                    <p>Our approach combines scientific research, community engagement, and policy advocacy to address the most pressing environmental challenges of our time.</p>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
-            </div>
-            <div class="stats">
-                <div class="stat-item">
-                    <i class="fas fa-tree"></i>
-                    <h3 class="counter" data-target="2500000">0</h3>
-                    <p>Trees Planted</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-users"></i>
-                    <h3 class="counter" data-target="50000">0</h3>
-                    <p>Active Members</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-globe-americas"></i>
-                    <h3 class="counter" data-target="120">0</h3>
-                    <p>Countries Reached</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-recycle"></i>
-                    <h3 class="counter" data-target="1500">0</h3>
-                    <p>Cleanup Projects</p>
-                </div>
-            </div>
+    <!-- Intro / AI types -->
+    <section class="container section">
+      <h2 class="section-title">What is AI? The three horizons</h2>
+      <div class="section-subhead">Artificial intelligence mimics human cognition — learning, reasoning, and self-correction. Its spectrum ranges from narrow tools to hypothetical superintelligence.</div>
+      <div class="grid-3">
+        <div class="card">
+          <i class="fas fa-microchip"></i>
+          <h3>Artificial Narrow Intelligence (ANI)</h3>
+          <p>Today’s reality: AI specialized in one task. Facial recognition, language translators, and recommendation engines. ANI powers your digital world.</p>
         </div>
+        <div class="card">
+          <i class="fas fa-robot"></i>
+          <h3>Artificial General Intelligence (AGI)</h3>
+          <p>Human‑level adaptability: a single system that can learn any intellectual task. Still on the horizon, AGI would reason, plan, and solve problems like a person.</p>
+        </div>
+        <div class="card">
+          <i class="fas fa-infinity"></i>
+          <h3>Artificial Superintelligence (ASI)</h3>
+          <p>Beyond human brilliance: ASI would surpass the best minds in science, creativity, and social skills. A concept that fuels both hope and ethical debate.</p>
+        </div>
+      </div>
     </section>
 
-    <!-- Initiatives Section -->
-    <section class="initiatives" id="initiatives">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Initiatives</h2>
-                <p>Discover the key programs and projects we're implementing to protect our planet.</p>
-            </div>
-            <div class="initiatives-grid">
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://dialogue.earth/content/uploads/2021/04/lessons-from-the-rush-to-reforest-china-dialogue-2400x1599.jpg" alt="Reforestation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Global Reforestation</h3>
-                        <p>Planting millions of trees worldwide to restore ecosystems, combat climate change, and protect biodiversity.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1621451537084-482c73073a0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Ocean Conservation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Ocean Conservation</h3>
-                        <p>Protecting marine ecosystems, reducing plastic pollution, and promoting sustainable fishing practices.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Renewable Energy">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Renewable Energy</h3>
-                        <p>Promoting solar, wind, and other clean energy sources to reduce dependence on fossil fuels.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- Applications grid with icons -->
+    <section class="container section">
+      <h2 class="section-title">AI in action across industries</h2>
+      <div class="section-subhead">From drug discovery to traffic flow — AI is already a quiet partner in our daily lives.</div>
+      <div class="grid-4">
+        <div class="card"><span class="app-icon"><i class="fas fa-heartbeat" style="font-size: 2rem;"></i></span><h3>Healthcare</h3><p>Diagnostic imaging, drug discovery, and personalized treatment plans with up to 95% accuracy.</p></div>
+        <div class="card"><span class="app-icon"><i class="fas fa-car" style="font-size: 2rem;"></i></span><h3>Autonomous vehicles</h3><p>Self‑driving cars perceive environments and make split‑second decisions to reduce accidents.</p></div>
+        <div class="card"><span class="app-icon"><i class="fas fa-chart-line" style="font-size: 2rem;"></i></span><h3>Finance</h3><p>Algorithmic trading, fraud detection, and risk assessment analyzing millions of data points per second.</p></div>
+        <div class="card"><span class="app-icon"><i class="fas fa-graduation-cap" style="font-size: 2rem;"></i></span><h3>Education</h3><p>Adaptive learning platforms that tailor lessons to individual student needs and pace.</p></div>
+        <div class="card"><span class="app-icon"><i class="fas fa-seedling" style="font-size: 2rem;"></i></span><h3>Agriculture</h3><p>Precision farming: drones monitor crops, AI predicts yields, and optimizes water usage.</p></div>
+        <div class="card"><span class="app-icon"><i class="fas fa-film" style="font-size: 2rem;"></i></span><h3>Entertainment</h3><p>Content recommendation, AI‑generated music, and deepfake technology for visual effects.</p></div>
+        <div class="card"><span class="app-icon"><i class="fas fa-robot" style="font-size: 2rem;"></i></span><h3>Manufacturing</h3><p>Predictive maintenance, quality control with computer vision, and collaborative robots (cobots).</p></div>
+        <div class="card"><span class="app-icon"><i class="fas fa-leaf" style="font-size: 2rem;"></i></span><h3>Climate & energy</h3><p>Smart grids, weather modeling, and carbon capture optimization using neural networks.</p></div>
+      </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta" id="get-involved">
-        <div class="container">
-            <h2>Join Our Global Movement</h2>
-            <p>Together, we can create a sustainable future for generations to come. Every action counts, no matter how small.</p>
-            <a href="#" class="btn">Become a Member</a>
-        </div>
+    <!-- stats strip (wide) -->
+    <div class="container">
+      <div class="stats-strip">
+        <div class="stat-block"><h2>74%</h2><p>of executives believe AI will transform their industry by 2026</p></div>
+        <div class="stat-block"><h2>+40%</h2><p>average productivity gain in AI‑adopting companies</p></div>
+        <div class="stat-block"><h2>97M</h2><p>new jobs expected by 2025 due to AI collaboration</p></div>
+        <div class="stat-block"><h2>9/10</h2><p>leading research papers in AI originate from industry</p></div>
+      </div>
+    </div>
+
+    <!-- Timeline: key milestones -->
+    <section class="container section">
+      <h2 class="section-title">Milestones on the AI timeline</h2>
+      <div class="section-subhead">From theory to global phenomenon — the journey so far.</div>
+      <div class="timeline">
+        <div class="timeline-item"><div class="timeline-year">1950</div><div class="timeline-content"><h4>Turing Test</h4><p>Alan Turing proposes a test of machine intelligence: can a machine imitate human conversation?</p></div></div>
+        <div class="timeline-item"><div class="timeline-year">1956</div><div class="timeline-content"><h4>Dartmouth workshop</h4><p>The birth of AI as a field; the term "artificial intelligence" is coined.</p></div></div>
+        <div class="timeline-item"><div class="timeline-year">1997</div><div class="timeline-content"><h4>Deep Blue defeats Kasparov</h4><p>IBM’s chess computer beats world champion, showing machines can outcalculate humans.</p></div></div>
+        <div class="timeline-item"><div class="timeline-year">2012</div><div class="timeline-content"><h4>Deep learning breakthrough</h4><p>AlexNet wins ImageNet; GPUs ignite the neural network revolution.</p></div></div>
+        <div class="timeline-item"><div class="timeline-year">2022</div><div class="timeline-content"><h4>ChatGPT & generative AI</h4><p>LLMs bring AI to the masses — creating text, images, and code with human-like fluency.</p></div></div>
+        <div class="timeline-item"><div class="timeline-year">Today</div><div class="timeline-content"><h4>Agentic AI & beyond</h4><p>Autonomous systems that plan and execute tasks; the road toward AGI gets clearer.</p></div></div>
+      </div>
     </section>
 
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Green Network</h3>
-                    <p>We are dedicated to protecting our planet through collaborative action, education, and sustainable solutions.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#initiatives">Initiatives</a></li>
-                        <li><a href="#get-involved">Get Involved</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Our Programs</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Reforestation</a></li>
-                        <li><a href="#">Ocean Cleanup</a></li>
-                        <li><a href="#">Wildlife Protection</a></li>
-                        <li><a href="#">Climate Education</a></li>
-                        <li><a href="#">Sustainable Agriculture</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Copper Creek Drive, New York</p>
-                    <p><i class="fas fa-phone"></i> +1 (312) 171-0771</p>
-                    <p><i class="fas fa-envelope"></i> support@greennetwork.org</p>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2025 Green Network. All rights reserved.</p>
-            </div>
+    <!-- Inspiring quote -->
+    <div class="container">
+      <div class="quote-block">
+        <div class="quote-text">“Just as electricity transformed almost everything 100 years ago, today I actually have a hard time thinking of an industry that I don’t think AI will transform in the next several years.”</div>
+        <span class="quote-author">— Andrew Ng, AI pioneer</span>
+      </div>
+    </div>
+
+    <!-- call to action -->
+    <div class="container section">
+      <div class="cta-section">
+        <h2>Shape the intelligent future</h2>
+        <p>Whether you're a curious mind, a creator, or an investor — understanding AI is the first step to harnessing its potential.</p>
+        <div class="cta-buttons">
+          <a href="#" class="btn btn-primary" style="background:white; color:#0f172a;">Start learning</a>
+          <a href="#" class="btn btn-outline" style="border-color:white; color:white; margin-left:1rem;">Partner with us</a>
         </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- footer -->
+  <div class="container">
+    <footer class="footer">
+      <div><span style="font-weight:600;">© 2025 INTELLECT</span> — All statements are simulated for demonstration.</div>
+      <div class="social">
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-github"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
     </footer>
+  </div>
 
-    <script>
-        // Mobile Menu Toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('nav ul').classList.toggle('active');
-        });
-
-        // Counter Animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-            const speed = 200; // The lower the slower
-            
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
-                
-                const inc = target / speed;
-                
-                if(count < target) {
-                    counter.innerText = Math.ceil(count + inc);
-                    setTimeout(animateCounters, 1);
-                } else {
-                    counter.innerText = target;
-                }
-            });
-        }
-
-        // Initialize counters when page loads
-        window.addEventListener('load', animateCounters);
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    document.querySelector('nav ul').classList.remove('active');
-                }
-            });
-        });
-    </script>
+  <!-- subtle decoration (no JS needed) -->
 </body>
-
 </html>
